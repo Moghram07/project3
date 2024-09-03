@@ -56,4 +56,10 @@ public class AccountController {
         accountService.transferFunds(fromCustomerId, fromAccountId, toAccountid, amount);
         return ResponseEntity.status(200).body(new ApiResponse("Amount Transferred"));
     }
+
+    @PutMapping("/block/{customerId}/{id}")
+    public ResponseEntity blockAccount(@PathVariable Integer customerId, @PathVariable Integer id, @AuthenticationPrincipal User user){
+        accountService.blockAccount(customerId, id);
+        return ResponseEntity.status(200).body(new ApiResponse("Account Blocked"));
+    }
 }
