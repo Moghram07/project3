@@ -115,4 +115,17 @@ public class AccountService {
         accountRepository.save(toAccount);
     }
 
+        // Method to block a bank account
+        public void blockAccount(Integer accountId, Integer customerId) {
+        Customer customer = customerRepository.findCustomerById(customerId);
+        Account account = accountRepository.findAccountById(accountId);
+        if (account == null) {
+            throw new ApiException("Account with id " + accountId + " not found");
+        } else if(account.getCustomer().getId() != customerId) {
+            throw new ApiException("Account not linked to customer");
+        }
+        account.setActive(false);  // Set the account to inactive, indicating it's blocked
+        accountRepository.save(account);
+    }
+
 }
