@@ -40,7 +40,7 @@ public class ConfigSecurity {
                 .requestMatchers("/api/v1/user/login", "/api/v1/user/register","/api/v1/employee/register").permitAll()
                 .requestMatchers("/api/v1/user/delete/{id}","/api/v1/customer/delete/{id}","/api/v1/employee/delete/{id}").hasAuthority("ADMIN")
                 .requestMatchers("/api/v1/employee/get", "/api/v1/employee/update/{id}").hasAuthority("ADMIN")
-                .requestMatchers("/api/v1/customer/get", "/api/v1/customer/register", "/api/v1/customer/update/{id}").hasAnyAuthority("ADMIN", "EMPLOYEE")
+                .requestMatchers("/api/v1/customer/get", "/api/v1/customer/register", "/api/v1/customer/update/{id}", "/api/v1/account/block/").hasAnyAuthority("ADMIN", "EMPLOYEE")
                 .requestMatchers("/api/v1/account/register","/api/v1/account/deposit/{customerId}/{id}", "/api/v1/account/withdraw/{customerId}/{id}",
                         "/api/v1/account/{fromCustomerId}/{fromAccountId}/transfer/{toAccountid}").hasAuthority("CUSTOMER")
                 .anyRequest().authenticated()
